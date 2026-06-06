@@ -36,9 +36,9 @@ const (
 var errFindings = errors.New("optiqor: findings exceed threshold")
 
 var (
-    version   = "dev"
-    commit    = "none"
-    buildDate = "unknown"
+	version   = "dev"
+	commit    = "none"
+	buildDate = "unknown"
 )
 
 // accuracyDisclosure is the mandatory line every command's help and
@@ -66,7 +66,7 @@ func main() {
 		}
 		os.Exit(0)
 	}
-	
+
 	err := newRootCmd().Execute()
 	switch {
 	case err == nil:
@@ -85,7 +85,7 @@ func newRootCmd() *cobra.Command {
 		noColor    bool
 		configPath string
 	)
-	var verboseVersion bool 
+	var verboseVersion bool
 
 	root := &cobra.Command{
 		Use:   "optiqor",
@@ -117,7 +117,7 @@ namespaces, etc.). Cost is the headline; security is a side-effect.
 
 	root.PersistentFlags().BoolVar(&noColor, "no-color", false, "disable colored output (also: NO_COLOR env)")
 	root.PersistentFlags().StringVar(&configPath, "config", "", "path to .optiqor.yaml (default: ./.optiqor.yaml or $OPTIQOR_CONFIG)")
-	root.PersistentFlags().BoolVar(&verboseVersion,"verbose",false,"show detailed version information")
+	root.PersistentFlags().BoolVar(&verboseVersion, "verbose", false, "show detailed version information")
 	root.PersistentPreRunE = func(cmd *cobra.Command, _ []string) error {
 		cfg, err := config.Load(configPath)
 		if err != nil {
